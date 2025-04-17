@@ -3,7 +3,6 @@ function Step-InstallWinPEAppPwsh {
     param (
         [System.String]
         $AppName = 'PowerShell 7.5',
-
         [System.String]
         $Architecture = $global:BuildMedia.Architecture,
         [System.String]
