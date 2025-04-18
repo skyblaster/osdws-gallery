@@ -13,24 +13,24 @@
 	powershell, -NoExit -WindowStyle Hidden -Command ...
 
 	Launch the On Screen Keyboard
-	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartOSK -Run Asynchronous -WindowStyle Hidden
+	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartOSK -Run Asynchronous -WindowStyle Hidden
 	[-Run Asynchronous] This command will run and continue to the next Winpeshl.ini command, without waiting for this command to finish.
 	[-WindowStyle Hidden] The -WindowStyle Hidden hides the PowerShell window that launches the On Screen Keyboard.
 
 	Hardware Devices with OK Status
-	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowHardware -Run Asynchronous -WindowStyle Minimized -NoExit
+	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowHardware -Run Asynchronous -WindowStyle Minimized -NoExit
 	[-Run Asynchronous] This command will run and continue to the next Winpeshl.ini command, without waiting for this command to finish.
 	[-WindowStyle Minimized] The PowerShell window will open minimized, allowing the user to view if necessary.
 	[-NoExit] The PowerShell window will persist until closed by the user.
 
 	Hardware Devices without OK Status
-	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowHardwareErrors -Run Asynchronous -WindowStyle Maximized -NoExit
+	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowHardwareErrors -Run Asynchronous -WindowStyle Maximized -NoExit
 	[-Run Asynchronous] This command will run and continue to the next Winpeshl.ini command, without waiting for this command to finish.
 	[-WindowStyle Maximized] The PowerShell window will open maximized to ensure visiblity of the Hardware information.
 	[-NoExit] The PowerShell window will persist until closed by the user.
 
 	Wireless Connectivity
-	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowWiFi -Run Synchronous
+	powershell, -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowWiFi -Run Synchronous
 	[-Run Synchronous] Default. This command will run and wait for this command to finish before continuing to the next Winpeshl.ini command.
 
 	Update OSD PowerShell
@@ -39,7 +39,7 @@
 	[-Run Synchronous] Default. This command will run and wait for this command to finish before continuing to the next Winpeshl.ini command.
 	[-WindowStyle Normal] Default.
 
-	powershell, -WindowStyle Hidden -NoExit -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowDeviceInfo -NoExit
+	powershell, -WindowStyle Hidden -NoExit -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowDeviceInfo -NoExit
 	[-Run Synchronous] Default. This command will run and wait for this command to finish before continuing to the next Winpeshl.ini command.
 	[-NoExit] The PowerShell window will persist until closed by the user.
 
@@ -75,13 +75,13 @@ title OSDCloud Workspace WinPE Startup
 wpeinit
 wpeutil DisableFirewall
 wpeutil UpdateBootInfo
-PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartOSK -WindowStyle Hidden
-PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowHardwareErrors -WindowStyle Maximized -NoExit -Wait
-PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowHardware -WindowStyle Minimized -NoExit
-PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowWiFi -Wait
-PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowIPConfig -Run Asynchronous -WindowStyle Minimized -NoExit
+PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartOSK -WindowStyle Hidden
+PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowHardwareErrors -WindowStyle Maximized -NoExit -Wait
+PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowHardware -WindowStyle Minimized -NoExit
+PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowWiFi -Wait
+PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowIPConfig -Run Asynchronous -WindowStyle Minimized -NoExit
 PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSModuleUpdate -Name OSD -Verbose -Wait
-PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinPEStartWindowDeviceInfo -NoExit -Wait
+PowerShell -WindowStyle Hidden -Command Invoke-WpeinitPSCommand Show-WinpeStartWindowDeviceInfo -NoExit -Wait
 wpeutil Reboot
 pause
 '@
