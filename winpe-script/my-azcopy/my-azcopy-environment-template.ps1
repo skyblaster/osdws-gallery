@@ -55,7 +55,7 @@ HKLM,"SYSTEM\ControlSet001\Control\Session Manager\Environment",AZCOPY_CONTAINER
     #   Build Driver
     #=================================================
     $InfFile = "$env:Temp\Set-AzCopyEnvironmentVariables.inf"
-    New-Item -Path $InfFile -Force
+    New-Item -Path $InfFile -Force | Out-Null
     Set-Content -Path $InfFile -Value $InfContent -Encoding Unicode -Force
     #=================================================
     #   Add Driver
@@ -65,5 +65,4 @@ HKLM,"SYSTEM\ControlSet001\Control\Session Manager\Environment",AZCOPY_CONTAINER
     Write-Verbose "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand)] End"
     #=================================================
 }
-
 Step-SetAzCopyEnvironmentVariables
