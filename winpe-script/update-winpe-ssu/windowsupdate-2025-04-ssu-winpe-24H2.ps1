@@ -16,7 +16,7 @@ if ($Architecture -eq 'amd64') {
     $PackagePath = "$PSScriptRoot\$Architecture\SSU-26100.3189-x64.cab"
 }
 if ($Architecture -eq 'arm64') {
-    $PackagePath = "$PSScriptRoot\$Architecture\SSU-26100.3189-arm64.cab"
+    $PackagePath = "$PSScriptRoot\$Architecture\SSU-26100.3764-arm64.cab"
 }
 Write-Host -ForegroundColor DarkGray "[$((Get-Date).ToString('HH:mm:ss'))] $PackagePath"
 Add-WindowsPackage -Path $MountPath -PackagePath $PackagePath -Verbose
@@ -28,7 +28,7 @@ if ($Architecture -eq 'amd64') {
     $PackagePath = "$PSScriptRoot\$Architecture\windows11.0-kb5053426-x64_c81b1c234490a57c701ded095d5e2955c1240bdc.cab"
 }
 if ($Architecture -eq 'arm64') {
-    $PackagePath = "$PSScriptRoot\$Architecture\windows11.0-kb5053426-arm64_d66021dd40fb00efee61cc377705ed2f91a4553b.cab"
+    $PackagePath = "$PSScriptRoot\$Architecture\windows11.0-kb5055671-arm64.cab"
 }
 
 Write-Host -ForegroundColor DarkGray "[$((Get-Date).ToString('HH:mm:ss'))] $PackagePath"

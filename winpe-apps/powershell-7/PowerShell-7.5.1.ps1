@@ -2,13 +2,17 @@ function Step-InstallWinPEAppPwsh {
     [CmdletBinding()]
     param (
         [System.String]
-        $AppName = 'PowerShell 7.5',
+        $AppName = 'PowerShell 7.5.1',
         [System.String]
         $Architecture = $global:BuildMedia.Architecture,
         [System.String]
         $MountPath = $global:BuildMedia.MountPath,
         [System.String]
-        $WinPEAppsPath = $($OSDWorkspace.paths.winpe_apps)
+        $WinPEAppsPath = $($OSDWorkspace.paths.winpe_apps),
+        [System.String]
+        $amd64Url = 'https://github.com/PowerShell/PowerShell/releases/download/v7.5.1/PowerShell-7.5.1-win-x64.zip',
+        [System.String]
+        $arm64Url = 'https://github.com/PowerShell/PowerShell/releases/download/v7.5.1/PowerShell-7.5.1-win-arm64.zip'
     )
     #=================================================
     $Error.Clear()
@@ -30,7 +34,7 @@ function Step-InstallWinPEAppPwsh {
     }
 
     # Download amd64
-    $DownloadUri = $global:OSDWorkspace.winpeapps.pwsh.amd64
+    $DownloadUri = $amd64Url
     $DownloadFile = Split-Path $DownloadUri -Leaf
     if (-not (Test-Path "$CachePowerShell7\$DownloadFile")) {
         $DownloadResult = Save-WebFile -SourceUrl $DownloadUri -DestinationDirectory $CachePowerShell7
@@ -47,7 +51,7 @@ function Step-InstallWinPEAppPwsh {
     }
 
     # Download arm64
-    $DownloadUri = $global:OSDWorkspace.winpeapps.pwsh.arm64
+    $DownloadUri = 'arm64Url'
     $DownloadFile = Split-Path $DownloadUri -Leaf
     if (-not (Test-Path "$CachePowerShell7\$DownloadFile")) {
         $DownloadResult = Save-WebFile -SourceUrl $DownloadUri -DestinationDirectory $CachePowerShell7

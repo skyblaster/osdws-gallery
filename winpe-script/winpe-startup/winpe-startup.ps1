@@ -64,6 +64,7 @@ $ModuleNames = @('OSD', 'OSDCloud')
 $ModuleNames | ForEach-Object {
 	$ModuleName = $_
 	Write-Host -ForegroundColor DarkGray "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand.Source)] Copy PowerShell Module to BootImage: $ModuleName"
+	# Add a step to install the latest
 	Copy-PSModuleToWindowsImage -Name $ModuleName -Path $MountPath | Out-Null
 }
 #endregion
