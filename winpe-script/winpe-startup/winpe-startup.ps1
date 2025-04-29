@@ -81,6 +81,7 @@ powershell.exe -w h -c Invoke-OSDCloudPEStartup DeviceHardware
 powershell.exe -w h -c Invoke-OSDCloudPEStartup WiFi
 powershell.exe -w h -c Invoke-OSDCloudPEStartup IPConfig
 powershell.exe -w h -c Invoke-OSDCloudPEStartup UpdateModule -Value OSD
+powershell.exe -w h -c Invoke-OSDCloudPEStartup UpdateModule -Value OSDCloud
 powershell.exe -w h -c Invoke-OSDCloudPEStartup Info
 wpeutil Reboot
 pause
