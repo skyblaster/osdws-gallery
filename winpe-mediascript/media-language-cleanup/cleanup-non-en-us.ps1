@@ -57,7 +57,7 @@ $Languages = @(
 )
 
 Start-Transcript
-Write-Host -ForegroundColor DarkGray "[$((Get-Date).ToString('HH:mm:ss'))] Removing non en-us language artifacts from BootMedia"
+Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] Removing non en-us language artifacts from BootMedia"
 foreach ($Language in $Languages) {
     if (Test-Path "$MediaPath\$Language") {
         Remove-Item -Path "$MediaPath\$Language" -Recurse

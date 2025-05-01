@@ -6,11 +6,11 @@
     )
     #=================================================
     $Error.Clear()
-    Write-Verbose "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand)] Start"
+    Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] Start"
     #=================================================
-    Write-Verbose "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand)] Architecture: $Architecture"
-    Write-Verbose "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand)] MountPath: $MountPath"
-    Write-Verbose "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand)] WinPEAppsPath: $WinPEAppsPath"
+    Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] Architecture: $Architecture"
+    Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] MountPath: $MountPath"
+    Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] WinPEAppsPath: $WinPEAppsPath"
     #=================================================
     $InfContent = @'
 [Version]
@@ -62,7 +62,7 @@ HKLM,"SYSTEM\ControlSet001\Control\Session Manager\Environment",AZCOPY_CONTAINER
     #=================================================
     Add-WindowsDriver -Path $MountPath -Driver $InfFile -ForceUnsigned
     #=================================================
-    Write-Verbose "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand)] End"
+    Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] End"
     #=================================================
 }
 Step-SetAzCopyEnvironmentVariables

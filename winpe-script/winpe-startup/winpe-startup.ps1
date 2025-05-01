@@ -63,7 +63,7 @@
 $ModuleNames = @('OSD', 'OSDCloud')
 $ModuleNames | ForEach-Object {
 	$ModuleName = $_
-	Write-Host -ForegroundColor DarkGray "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand.Source)] Copy PowerShell Module to BootImage: $ModuleName"
+	Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand.Source)] Copy PowerShell Module to BootImage: $ModuleName"
 	# Add a step to install the latest
 	Copy-PSModuleToWindowsImage -Name $ModuleName -Path $MountPath | Out-Null
 }
@@ -87,7 +87,7 @@ wpeutil Reboot
 pause
 '@
 
-Write-Host -ForegroundColor DarkGray "[$((Get-Date).ToString('HH:mm:ss'))][$($MyInvocation.MyCommand.Source)] Adding $MountPath\Windows\System32\startnet.cmd"
+Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand.Source)] Adding $MountPath\Windows\System32\startnet.cmd"
 $Content | Out-File -FilePath "$MountPath\Windows\System32\startnet.cmd" -Encoding ascii -Width 2000 -Force
 #endregion
 #=================================================
