@@ -22,28 +22,27 @@ function Step-InstallWinPEAppPwsh {
     Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] MountPath: $MountPath"
     Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] WinPEAppsPath: $WinPEAppsPath"
     #=================================================
-    $CachePowerShell7 = Join-Path $WinPEAppsPath "Pwsh"
+    $appcache = Join-Path $WinPEAppsPath "microsoft-powershell7"
     
-    if (-not (Test-Path -Path $CachePowerShell7)) {
-        Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] PowerShell 7: Adding cache content at $CachePowerShell7"
-        New-Item -Path $CachePowerShell7 -ItemType Directory -Force | Out-Null
+    if (-not (Test-Path -Path $appcache)) {
+        Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] PowerShell 7: Adding cache content at $appcache"
+        New-Item -Path $appcache -ItemType Directory -Force | Out-Null
     }
     else {
-        Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] PowerShell 7: Using cache content at $CachePowerShell7"
-        Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] To update PowerShell 7, delete the $CachePowerShell7 directory."
+        Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] PowerShell 7: Using cache content at $appcache"
     }
 
     # Download amd64
     $DownloadUri = $amd64Url
     $DownloadFile = Split-Path $DownloadUri -Leaf
-    if (-not (Test-Path "$CachePowerShell7\$DownloadFile")) {
-        $DownloadResult = Save-WebFile -SourceUrl $DownloadUri -DestinationDirectory $CachePowerShell7
+    if (-not (Test-Path "$appcache\$DownloadFile")) {
+        $DownloadResult = Save-WebFile -SourceUrl $DownloadUri -DestinationDirectory $appcache
         Start-Sleep -Seconds 2
     }
     # Install amd64
     if ($Architecture -eq 'amd64') {
-        if (Test-Path "$CachePowerShell7\$DownloadFile") {
-            Expand-Archive -Path "$CachePowerShell7\$DownloadFile" -DestinationPath "$MountPath\Program Files\PowerShell\7" -Force
+        if (Test-Path "$appcache\$DownloadFile") {
+            Expand-Archive -Path "$appcache\$DownloadFile" -DestinationPath "$MountPath\Program Files\PowerShell\7" -Force
         
             # Record the installed app
             $global:BuildMedia.InstalledApps += $AppName
@@ -51,19 +50,19 @@ function Step-InstallWinPEAppPwsh {
     }
 
     # Download arm64
-    $DownloadUri = 'arm64Url'
+    $DownloadUri = $arm64Url
     $DownloadFile = Split-Path $DownloadUri -Leaf
-    if (-not (Test-Path "$CachePowerShell7\$DownloadFile")) {
-        $DownloadResult = Save-WebFile -SourceUrl $DownloadUri -DestinationDirectory $CachePowerShell7
+    if (-not (Test-Path "$appcache\$DownloadFile")) {
+        $DownloadResult = Save-WebFile -SourceUrl $DownloadUri -DestinationDirectory $appcache
         Start-Sleep -Seconds 2
         if ($Architecture -eq 'arm64') {
-            Expand-Archive -Path "$CachePowerShell7\$DownloadFile" -DestinationPath "$MountPath\Program Files\PowerShell\7" -Force
+            Expand-Archive -Path "$appcache\$DownloadFile" -DestinationPath "$MountPath\Program Files\PowerShell\7" -Force
         }
     }
     # Install arm64
     if ($Architecture -eq 'arm64') {
-        if (Test-Path "$CachePowerShell7\$DownloadFile") {
-            Expand-Archive -Path "$CachePowerShell7\$DownloadFile" -DestinationPath "$MountPath\Program Files\PowerShell\7" -Force
+        if (Test-Path "$appcache\$DownloadFile") {
+            Expand-Archive -Path "$appcache\$DownloadFile" -DestinationPath "$MountPath\Program Files\PowerShell\7" -Force
         
             # Record the installed app
             $global:BuildMedia.InstalledApps += $AppName

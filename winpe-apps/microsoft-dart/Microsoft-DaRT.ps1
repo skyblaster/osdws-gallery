@@ -18,21 +18,21 @@ function Step-InstallWinPEAppMicrosoftDaRT {
     Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] MountPath: $MountPath"
     Write-Verbose "[$(Get-Date -format G)] [$($MyInvocation.MyCommand)] WinPEAppsPath: $WinPEAppsPath"
     #=================================================
-    $CacheMicrosoftDaRT = Join-Path $WinPEAppsPath 'MicrosoftDaRT'
+    $appcache = Join-Path $WinPEAppsPath 'microsoft-dart'
 
     # MicrosoftDartCab
     $MicrosoftDartCab = "$env:ProgramFiles\Microsoft DaRT\v10\Toolsx64.cab"
     if (Test-Path $MicrosoftDartCab) {
-        if (-not (Test-Path "$CacheMicrosoftDaRT\Toolsx64.cab")) {
-            Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand.Name)] Microsoft DaRT: Adding cache content at $CacheMicrosoftDaRT"
-            if (-not (Test-Path $CacheMicrosoftDaRT)) {
-                New-Item -Path $CacheMicrosoftDaRT -ItemType Directory -Force | Out-Null
+        if (-not (Test-Path "$appcache\Toolsx64.cab")) {
+            Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand.Name)] Microsoft DaRT: Adding cache content at $appcache"
+            if (-not (Test-Path $appcache)) {
+                New-Item -Path $appcache -ItemType Directory -Force | Out-Null
             }
-            Copy-Item -Path $MicrosoftDartCab -Destination "$CacheMicrosoftDaRT\Toolsx64.cab" -Force | Out-Null
+            Copy-Item -Path $MicrosoftDartCab -Destination "$appcache\Toolsx64.cab" -Force | Out-Null
         }
     }
 
-    $MicrosoftDartCab = "$CacheMicrosoftDaRT\Toolsx64.cab"
+    $MicrosoftDartCab = "$appcache\Toolsx64.cab"
     if (Test-Path $MicrosoftDartCab) {
         if ($MediaName -match 'public') {
             Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand.Name)] Microsoft DaRT: Not adding Microsoft DaRT for Public BootMedia"
@@ -52,16 +52,16 @@ function Step-InstallWinPEAppMicrosoftDaRT {
     # MicrosoftDartConfig
     $MicrosoftDartConfig = "$env:ProgramFiles\Microsoft Deployment Toolkit\Templates\DartConfig8.dat"
     if (Test-Path $MicrosoftDartConfig) {
-        if (-not (Test-Path "$CacheMicrosoftDaRT\DartConfig.dat")) {
-            Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand.Name)] Microsoft DaRT Config: Adding cache content at $CacheMicrosoftDaRT"
-            if (-not (Test-Path $CacheMicrosoftDaRT)) {
-                New-Item -Path $CacheMicrosoftDaRT -ItemType Directory -Force | Out-Null
+        if (-not (Test-Path "$appcache\DartConfig.dat")) {
+            Write-Host -ForegroundColor DarkGray "[$(Get-Date -format G)] [$($MyInvocation.MyCommand.Name)] Microsoft DaRT Config: Adding cache content at $appcache"
+            if (-not (Test-Path $appcache)) {
+                New-Item -Path $appcache -ItemType Directory -Force | Out-Null
             }
-            Copy-Item -Path $MicrosoftDartConfig -Destination "$CacheMicrosoftDaRT\DartConfig.dat" -Force | Out-Null
+            Copy-Item -Path $MicrosoftDartConfig -Destination "$appcache\DartConfig.dat" -Force | Out-Null
         }
     }
 
-    $MicrosoftDartConfig = "$CacheMicrosoftDaRT\DartConfig.dat"
+    $MicrosoftDartConfig = "$appcache\DartConfig.dat"
     if (Test-Path "$MicrosoftDartConfig") {
         Copy-Item -Path "$MicrosoftDartConfig" -Destination "$MountPath\Windows\System32\DartConfig.dat" -Force
     }
